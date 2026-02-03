@@ -1,0 +1,177 @@
+<!DOCTYPE html>  <html lang="tr">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Soft Cool</title>  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">  <style>  
+*{  
+    margin:0;  
+    padding:0;  
+    box-sizing:border-box;  
+    font-family:'Poppins',sans-serif;  
+}  
+  
+body{  
+    height:100vh;  
+    background: linear-gradient(135deg,#f7d9e3,#dbeafe);  
+    display:flex;  
+    align-items:center;  
+    justify-content:center;  
+    overflow:hidden;  
+}  
+  
+/* 🎉 GİRİŞ */  
+#intro{  
+    position:fixed;  
+    inset:0;  
+    background: linear-gradient(135deg,#f7d9e3,#dbeafe);  
+    display:flex;  
+    align-items:center;  
+    justify-content:center;  
+    flex-direction:column;  
+    z-index:10;  
+}  
+  
+#intro h1{  
+    font-size:26px;  
+    font-weight:400;  
+    text-align:center;  
+    color:#1f2937;  
+    animation: pop 1.2s ease;  
+}  
+  
+@keyframes pop{  
+    0%{transform:scale(0.7);opacity:0}  
+    100%{transform:scale(1);opacity:1}  
+}  
+  
+/* 🎈 BALON */  
+.balloon{  
+    position:absolute;  
+    bottom:-60px;  
+    width:30px;  
+    height:40px;  
+    border-radius:50%;  
+    background:pink;  
+    animation: floatUp 6s linear infinite;  
+    opacity:0.8;  
+}  
+  
+@keyframes floatUp{  
+    0%{transform:translateY(0)}  
+    100%{transform:translateY(-120vh)}  
+}  
+  
+/* ANA KARE */  
+.kare{  
+    position:relative;  
+    width:85vw;  
+    max-width:420px;  
+    aspect-ratio:1/1;  
+    background:rgba(255,255,255,0.35);  
+    backdrop-filter: blur(18px);  
+    border-radius:28px;  
+    box-shadow:0 30px 70px rgba(0,0,0,0.15);  
+    border:1px solid rgba(255,255,255,0.5);  
+    display:none;  
+}  
+  
+/* FOTOĞRAFLAR */  
+.kose{  
+    position:absolute;  
+    width:22vw;  
+    max-width:90px;  
+    aspect-ratio:1/1;  
+    object-fit:cover;  
+    border-radius:16px;  
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);  
+    transition:0.4s ease;  
+}  
+  
+.kose:hover{ transform:scale(1.07); }  
+  
+.sol-ust{ top:-18px; left:-18px; }  
+.sag-ust{ top:-18px; right:-18px; }  
+.sol-alt{ bottom:-18px; left:-18px; }  
+.sag-alt{ bottom:-18px; right:-18px; }  
+  
+/* YAZI */  
+.yazi{  
+    position:absolute;  
+    left:50%;  
+    bottom:-80px;  
+    transform:translateX(-50%);  
+    width:80%;  
+    text-align:center;  
+    font-size:18px;  
+    line-height:1.7;  
+    letter-spacing:1.2px;  
+    color:#2b2b2b;  
+    user-select:none;  
+    touch-action:none;  
+}  
+</style>  </head>  
+<body>  <!-- 🎉 INTRO -->  <div id="intro">  
+    <h1>14 Şubat 💖<br>Sevgililer Günümüz Kutlu Olsun</h1>  
+</div>  <!-- 🎶 MÜZİK -->  <audio autoplay loop>  
+    <source src="muzik.mp3" type="audio/mpeg">  
+</audio>  <div class="kare" id="kare">  
+    <img src="img1.jpg" class="kose sol-ust">  
+    <img src="img2.jpg" class="kose sag-ust">  
+    <img src="img3.jpg" class="kose sol-alt">  
+    <img src="img4.jpg" class="kose sag-alt">  <div class="yazi" id="yazi">  
+    Merhaba bugün günlerden salı 3 şubat salı   
+    Sen bu mesajı okuduğunda 14 şubat olacak ki o güne kadar eğer bi sıkıntı çıkmazsa  
+    Şahsen bi sıkıntı çıkacağını düşünmüyorum ama ya bişey olursa diye de korkmuyor değilim.   
+    Neyse İnşallah bişey olmaz diyelim.Öncelikle Sevgililer günümüz kutlu olsun senle sevgili olmak o kadar güzel bişey ki ve beni de o kadar mutlu ediyor ki bazen belki de bazı şeyleri abartıyor olabilirim. Gördüğüm kadarıyla bu duruma bozulmuyorsun ama inan bana seni çok sevdiğimden oluyor.benim genelde yaşıma göre olgun biri olduğumu söylerler ama bu konuda sen daha olgunsun. seni seviyorum güzel gözlüm bunu unutma olur mu.ve nolursa olsun be sensiz bırakma.  
+</div>
+
+</div>  <script>  
+/* 🎈 BALONLAR */  
+for(let i=0;i<12;i++){  
+    const b=document.createElement("div");  
+    b.className="balloon";  
+    b.style.left=Math.random()*100+"vw";  
+    b.style.background=`hsl(${Math.random()*360},80%,75%)`;  
+    b.style.animationDuration=4+Math.random()*4+"s";  
+    document.getElementById("intro").appendChild(b);  
+}  
+  
+/* INTRO KAPAN */  
+setTimeout(()=>{  
+    document.getElementById("intro").style.opacity=0;  
+    setTimeout(()=>{  
+        document.getElementById("intro").style.display="none";  
+        document.getElementById("kare").style.display="block";  
+    },1000);  
+},4500);  
+  
+/* AKAN YAZI (AYNEN) */  
+const yazi = document.getElementById("yazi");  
+let pos = -80;  
+let speed = 0.50;  
+let dragging = false;  
+let lastY = 0;  
+  
+function animate(){  
+    if(!dragging){  
+        pos += speed;  
+        if(pos > 220) pos = -80;  
+        yazi.style.bottom = pos + "px";  
+    }  
+    requestAnimationFrame(animate);  
+}  
+animate();  
+  
+yazi.addEventListener("touchstart", e=>{  
+    dragging = true;  
+    lastY = e.touches[0].clientY;  
+});  
+yazi.addEventListener("touchmove", e=>{  
+    const currentY = e.touches[0].clientY;  
+    pos += (lastY - currentY) * 0.8;  
+    yazi.style.bottom = pos + "px";  
+    lastY = currentY;  
+});  
+yazi.addEventListener("touchend", ()=> dragging=false);  
+</script>  </body>  
+</html>
